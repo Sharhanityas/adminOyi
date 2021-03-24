@@ -15,7 +15,7 @@ use App\Http\Controllers\EventController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/', 'DashboardController@index')->name('dashboard');
+Route::get('/login', 'DashboardController@index')->name('dashboard');
 
 Auth::routes(['register' => false]);
 
@@ -42,3 +42,5 @@ Route::resource('review', 'ReviewController');
 Route::resource('review_galleries', 'ReviewGalleryController');
 
 Route::resource('message', 'MessageController');
+
+Route::get('/', 'ClientPagesController@home');
