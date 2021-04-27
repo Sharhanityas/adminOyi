@@ -30,6 +30,26 @@
                    @error('tanggal_event')<div class="text-muted">{{ $message }}</div>                      
                    @enderror
         </div>
+                <div class="form-group">
+            <label for="waktu" class="form-control-label">Waktu</label>
+            <input type="time"
+                   name="waktu"
+                   value="{{ old('waktu') ? old('waktu') : $item->waktu }}"
+                   class="form-control @error('tanggal_event')is-invalid @enderror"
+                   />
+                   @error('waktu')<div class="text-muted">{{ $message }}</div>                      
+                   @enderror
+        </div>
+                        <div class="form-group">
+            <label for="tempat" class="form-control-label">Tempat</label>
+            <input type="text"
+                   name="tempat"
+                   value="{{ old('tempat') ? old('tempat') : $item->waktu }}"
+                   class="form-control @error('tanggal_event')is-invalid @enderror"
+                   />
+                   @error('tempat')<div class="text-muted">{{ $message }}</div>                      
+                   @enderror
+        </div>
         <div class="form-group">
             <label for="deskripsi" class="form-control-label">Deskripsi</label>
             <textarea name="deskripsi"
