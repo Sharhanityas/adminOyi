@@ -21,6 +21,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('events', 'API\EventController@all');
 
+Route::get('speaker', 'API\SpeakerController@all');
+
 Route::get('articles', 'API\ArticleController@all');
 
 Route::get('reviews', 'API\ReviewController@all');

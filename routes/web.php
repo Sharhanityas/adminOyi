@@ -22,6 +22,7 @@ Auth::routes(['register' => false]);
 Route::get('event/{id}/gallery', 'EventController@gallery')
     ->name('event.gallery');
 
+
 Route::get('article/{id}/gallery', 'ArticleController@gallery')
     ->name('article.gallery');
 
@@ -32,6 +33,8 @@ Route::get('review/{id}/gallery', 'ReviewController@gallery')
 Route::resource('event', 'EventController');
 
 Route::resource('event_galleries', 'EventGalleryController');
+
+Route::resource('speaker', 'SpeakerController');
 
 Route::resource('article', 'ArticleController');
 
