@@ -15,6 +15,8 @@ class EventController extends Controller
         $judul_event = $request->input('judul_event');
         $slug = $request->input('slug');
         $tanggal_event = $request->input('tanggal_event');
+        $waktu = $request->input('waktu');
+        $tempat = $request->input('tempat');
         $deskripsi = $request->input('deskripsi');
 
         if ($id) {
@@ -45,6 +47,12 @@ class EventController extends Controller
 
         if ($tanggal_event)
             $event->where('tanggal_event', 'like', '%' . $tanggal_event . '%');
+
+        if ($waktu)
+            $event->where('waktu', 'like', '%' . $waktu . '%');
+
+        if ($tempat)
+            $event->where('tempat', 'like', '%' . $tempat . '%');
 
         if ($deskripsi)
             $event->where('deskripsi', 'like', '%' . $deskripsi . '%');
