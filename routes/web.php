@@ -15,12 +15,13 @@ use App\Http\Controllers\EventController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/login', 'DashboardController@index')->name('dashboard');
+Route::get('/', 'DashboardController@index')->name('dashboard');
 
 Auth::routes(['register' => false]);
 
 Route::get('event/{id}/gallery', 'EventController@gallery')
     ->name('event.gallery');
+
 
 Route::get('article/{id}/gallery', 'ArticleController@gallery')
     ->name('article.gallery');
@@ -33,6 +34,8 @@ Route::resource('event', 'EventController');
 
 Route::resource('event_galleries', 'EventGalleryController');
 
+Route::resource('speaker', 'SpeakerController');
+
 Route::resource('article', 'ArticleController');
 
 Route::resource('article_galleries', 'ArticleGalleryController');
@@ -42,5 +45,3 @@ Route::resource('review', 'ReviewController');
 Route::resource('review_galleries', 'ReviewGalleryController');
 
 Route::resource('message', 'MessageController');
-
-Route::get('/', 'ClientPagesController@home');
