@@ -21,6 +21,14 @@
                     <li class="">
                         <a href="{{ route('event_galleries.create') }}"> <i class="menu-icon fa fa-plus"></i>Tambah Foto Events</a>
                     </li>
+                     <li class="menu-title">Pembicara</li><!-- /.menu-title -->   
+                     <li class="">
+                        <a href="{{ route('speaker.index') }}"> <i class="menu-icon fa fa-list"></i>Lihat  Pembicara Events</a>
+                    </li>
+                    <li class="">
+                        <a href="{{ route('speaker.create') }}"> <i class="menu-icon fa fa-plus"></i>Tambah Pembicara Events</a>
+                    </li>
+    
                     <li class="menu-title">Artikel</li><!-- /.menu-title -->
                     <li class="">
                         <a href="{{ route('article.index') }}"> <i class="menu-icon fa fa-list"></i>Lihat Artikel</a>
