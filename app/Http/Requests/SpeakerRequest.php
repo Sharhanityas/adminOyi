@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class EventRequest extends FormRequest
+class SpeakerRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,11 @@ class EventRequest extends FormRequest
     public function rules()
     {
         return [
-            'judul_event' => 'required|max:255',
-            'tanggal_event' => 'required|date',
-            'waktu' => 'required',
-            'tempat' => 'required|max:255',
+            'event_id' => 'required|integer|exists:events.id',
+            'nama' => 'required|max:255',
+            'email' => 'required|max:255',
+            'telepon' => 'required',
+            'foto' => 'required|image',
             'deskripsi' => 'required'
         ];
     }
