@@ -11,7 +11,7 @@ class Event extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'slug', 'judul_event', 'tanggal_event', 'deskripsi'
+        'slug', 'judul_event', 'tanggal_event', 'waktu', 'tempat', 'deskripsi'
     ];
 
     protected $hidden = [];
@@ -20,5 +20,11 @@ class Event extends Model
     {
 
         return $this->hasMany(EventGallery::class, 'event_id');
+    }
+
+    public function speakers()
+    {
+
+        return $this->hasMany(Speaker::class, 'event_id');
     }
 }
