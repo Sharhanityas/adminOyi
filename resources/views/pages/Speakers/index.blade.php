@@ -7,7 +7,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="box-tittle">
-                                Daftar Events
+                                Daftar Pembicara
                             </h4>
                         </div>
                     </div class="card-body--">
@@ -16,10 +16,11 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>judul</th>
-                                    <th>tanggal</th>
-                                    <th>waktu</th>
-                                    <th>tempat</th>
+                                    <th>event</th>
+                                    <th>nama pembicara</th>
+                                    <th>email</th>
+                                    <th>telepon</th>
+                                    <th>foto</th>
                                     <th>deskripsi</th>
                                 </tr>
                             </thead>
@@ -27,22 +28,20 @@
                                @forelse ($items as $item)
                                     <tr>
                                     <td>{{ $item->id }}</td>
-                                    <td>{{ $item->judul_event }}</td>
-                                    <td>{{ $item->tanggal_event }}</td>
-                                    <td>{{ $item->waktu }}</td>
-                                    <td>{{ $item->tempat }}</td>
+                                    <td>{{ $item->event->judul_event }}</td>
+                                    <td>{{ $item->nama }}</td>
+                                    <td>{{ $item->email }}</td>
+                                    <td>{{ $item->telepon }}</td>
+                                    <td>
+                                        <img src="{{ url($item->foto) }}" alt=""/>
+                                    </td>
                                     <td>{!! $item->deskripsi !!}</td>
                                     <td>
-                                        <a href="{{ route('event.gallery' , $item->id) }}" class = "btn btn-info btn-sm">
-                                            {{-- <a href="#" class = "btn btn-info btn-sm"> --}}
-                                            <i class="fa fa-picture-o">
-                                            </i>
-                                        </a>
-                                        <a href="{{ route("event.edit" , $item->id) }}" class = "btn btn-primary btn-sm">
+                                        <a href="{{ route("speaker.edit" , $item->id) }}" class = "btn btn-primary btn-sm">
                                             <i class="fa fa-pencil">
                                             </i>
                                         </a>
-                                        <form action="{{ route("event.destroy", $item->id) }}"
+                                        <form action="{{ route("speaker.destroy", $item->id) }}"
                                              method="post"
                                               class="d-inline">
                                               @csrf

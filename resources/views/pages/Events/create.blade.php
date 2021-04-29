@@ -29,6 +29,26 @@
                    @enderror
         </div>
         <div class="form-group">
+            <label for="waktu" class="form-control-label">Waktu</label>
+            <input type="time"
+                   name="waktu"
+                   value="{{ old('waktu') }}"
+                   class="form-control @error('waktu')is-invalid @enderror"
+                   />
+                   @error('waktu')<div class="text-muted">{{ $message }}</div>                      
+                   @enderror
+        </div>
+        <div class="form-group">
+            <label for="tempat" class="form-control-label">Tempat</label>
+            <input type="text"
+                   name="tempat"
+                   value="{{ old('tempat') }}"
+                   class="form-control @error('tempat')is-invalid @enderror"
+                   />
+                   @error('tempat')<div class="text-muted">{{ $message }}</div>                      
+                   @enderror
+        </div>
+        <div class="form-group">
             <label for="deskripsi" class="form-control-label">Deskripsi</label>
             <textarea name="deskripsi"
                       class=" ckeditor form-control @error('deskripsi')is-invalid @enderror">{{ old('deskripsi') }}</textarea>
