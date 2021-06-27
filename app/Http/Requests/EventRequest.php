@@ -25,10 +25,11 @@ class EventRequest extends FormRequest
     {
         return [
             'judul_event' => 'required|max:255',
-            'tanggal_event' => 'required|date',
-            'waktu' => 'required',
+            // 'tanggal_event' => 'required|date',
+            // 'waktu' => 'required',
             'tempat' => 'required|max:255',
-            'deskripsi' => 'required'
+            'deskripsi' => 'required',
+            'link' => 'required'
         ];
     }
 }

@@ -16,10 +16,10 @@
     
     
     <!-- css -->
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="{{url('/css/index.css') }}">
     
     <!-- AOS -->
-    <!-- <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"> -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <title>Outstanding Youth Indonesia</title>
     <link rel="shortcut icon" href="{{ url('/images/homeClient/logo.svg') }}" sizes="16x16"/>
@@ -30,7 +30,7 @@
     <!-- nav bar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="./index.html">
+            <a class="navbar-brand" href="/">
                 <img class="brand-img" src="{{ url('/images/homeClient/logo-panjang.svg') }}" alt="logo-oyi">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,16 +39,16 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="nav navbar-nav ms-auto">
                     <li class="nav-item me-3">
-                        <a class="nav-link active" aria-current="page" href="">Home</a>
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
                     </li>
                     <li class="nav-item me-3">
                         <a class="nav-link" aria-current="page" href="#event">Event</a>
                     </li>
                     <li class="nav-item me-3">
-                        <a class="nav-link" href="">Artikel</a>
+                        <a class="nav-link" href="/ArtikelList">Artikel</a>
                     </li>
                     <li class="nav-item me-3">
-                        <a class="nav-link" href="">Tentang Kami</a>
+                        <a class="nav-link" href="#about">Tentang Kami</a>
                     </li>
                 </ul>
             </div>

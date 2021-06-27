@@ -20,17 +20,18 @@
         </div>
         <div class="form-group">
             <label for="tanggal_event" class="form-control-label">Tanggal</label>
-            <input type="date"
+            <input type="text"
                    name="tanggal_event"
                    value="{{ old('tanggal_event') }}"
                    class="form-control @error('tanggal_event')is-invalid @enderror"
+                   placeholder="mm/dd/yyyy"
                    />
                    @error('tanggal_event')<div class="text-muted">{{ $message }}</div>                      
                    @enderror
         </div>
         <div class="form-group">
             <label for="waktu" class="form-control-label">Waktu</label>
-            <input type="time"
+            <input type="text"
                    name="waktu"
                    value="{{ old('waktu') }}"
                    class="form-control @error('waktu')is-invalid @enderror"
@@ -49,9 +50,19 @@
                    @enderror
         </div>
         <div class="form-group">
+            <label for="link" class="form-control-label">link</label>
+            <input type="text"
+                   name="link"
+                   value="{{ old('link') }}"
+                   class="form-control @error('link')is-invalid @enderror"
+                   />
+                   @error('link')<div class="text-muted">{{ $message }}</div>                      
+                   @enderror
+        </div>
+        <div class="form-group">
             <label for="deskripsi" class="form-control-label">Deskripsi</label>
             <textarea name="deskripsi"
-                      class=" ckeditor form-control @error('deskripsi')is-invalid @enderror">{{ old('deskripsi') }}</textarea>
+                      class=" ckeditor form-control @error('deskripsi')is-invalid @enderror" id="ckeditor">{{ old('deskripsi') }}</textarea>
                       @error('deskripsi')<div class="text-muted">{{ $message }}</div>                      
                    @enderror
         </div>

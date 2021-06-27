@@ -22,7 +22,7 @@
         </div>
         <div class="form-group">
             <label for="tanggal_event" class="form-control-label">Tanggal</label>
-            <input type="date"
+            <input type="text"
                    name="tanggal_event"
                    value="{{ old('tanggal_event') ? old('tanggal_event') : $item->tanggal_event }}"
                    class="form-control @error('tanggal_event')is-invalid @enderror"
@@ -32,7 +32,7 @@
         </div>
                 <div class="form-group">
             <label for="waktu" class="form-control-label">Waktu</label>
-            <input type="time"
+            <input type="text"
                    name="waktu"
                    value="{{ old('waktu') ? old('waktu') : $item->waktu }}"
                    class="form-control @error('tanggal_event')is-invalid @enderror"
@@ -40,15 +40,25 @@
                    @error('waktu')<div class="text-muted">{{ $message }}</div>                      
                    @enderror
         </div>
-                        <div class="form-group">
+        <div class="form-group">
             <label for="tempat" class="form-control-label">Tempat</label>
             <input type="text"
-                   name="tempat"
-                   value="{{ old('tempat') ? old('tempat') : $item->waktu }}"
-                   class="form-control @error('tanggal_event')is-invalid @enderror"
-                   />
-                   @error('tempat')<div class="text-muted">{{ $message }}</div>                      
-                   @enderror
+                name="tempat"
+                value="{{ old('tempat') ? old('tempat') : $item->tempat }}"
+                class="form-control @error('tanggal_event')is-invalid @enderror"
+                />
+                @error('tempat')<div class="text-muted">{{ $message }}</div>                      
+                @enderror
+        </div>
+        <div class="form-group">
+            <label for="link" class="form-control-label">link</label>
+            <input type="text"
+                name="link"
+                value="{{ old('link') ? old('link') : $item->link }}"
+                class="form-control @error('tanggal_event')is-invalid @enderror"
+                />
+                @error('link')<div class="text-muted">{{ $message }}</div>                      
+                @enderror
         </div>
         <div class="form-group">
             <label for="deskripsi" class="form-control-label">Deskripsi</label>

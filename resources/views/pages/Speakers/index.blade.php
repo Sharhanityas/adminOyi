@@ -28,7 +28,7 @@
                                @forelse ($items as $item)
                                     <tr>
                                     <td>{{ $item->id }}</td>
-                                    <td>{{ $item->event->judul_event }}</td>
+                                    <td>{{ $item->judul_event }}</td>
                                     <td>{{ $item->nama }}</td>
                                     <td>{{ $item->email }}</td>
                                     <td>{{ $item->telepon }}</td>

@@ -11,7 +11,7 @@ class Event extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'slug', 'judul_event', 'tanggal_event', 'waktu', 'tempat', 'deskripsi'
+        'slug', 'judul_event', 'tanggal_event', 'waktu', 'tempat', 'deskripsi','link'
     ];
 
     protected $hidden = [];

@@ -21,9 +21,10 @@
         <div class="form-group">
             <label for="isi" class="form-control-label">Isi</label>
             <textarea name="isi"
-                      class=" ckeditor form-control @error('isi')is-invalid @enderror">{{ old('isi') }}</textarea>
+                      class="form-control @error('isi')is-invalid @enderror" id="ckeditor">{{ old('isi') }}</textarea>
                       @error('isi')<div class="text-muted">{{ $message }}</div>                      
                    @enderror
+        
         </div>
         <div class="form-group">
             <button class="btn btn-primary btn-block" type="submit">Tambah Artikel

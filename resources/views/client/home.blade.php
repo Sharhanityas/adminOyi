@@ -1,7 +1,7 @@
 @extends('client/layout')
 <!-- title section -->
     @section('css')
-        <link rel="stylesheet" type="text/css" href="{{ url('/css/home.css') }}" />
+        <link rel="stylesheet" type="text/css" href="{{url('/css/home.css') }}" />
     @endsection
     @section('content')
     <section class="title">
@@ -24,7 +24,7 @@
         </div>
     </section>
 
-    <section class="about-oyi">
+    <section class="about-oyi" id="about">
         <div class="container">
             <div class="about-quotes" data-aos="fade-up" data-aos-duration="2000">
                 <h1 class="mb-5 judul">Apa itu <span>OYI?</span></h1>
@@ -78,79 +78,27 @@
                         <div class="carousel-inner">
                             <div class="carousel-item active">
                                 <div class="row justify-content-center">
+                                    @foreach ($event as $data)
                                     <div class="col-5">
                                         <div class="card">
-                                            <img src="{{ url('/images/homeClient/rect2254.png') }}" class="card-img-top" alt="...">
+                                            <img src="{{ asset('storage/'.$data->gambar_event) }}" class="card-img-top h-100" alt="...">
                                             <div class="card-body">
-                                                <h5 class="card-title">Semangat Mengabdi di Era Pandemi</h5>
-                                                <p class="event-text card-text"><span>7 Maret 2021 </span>| 10.00 WIB</p>
-                                                <a href="http://bit.ly/pemudamengabdiOYI" class="button btn">Yuk Gabung!!!</a>
+                                                <h5 class="card-title">{{$data->judul_event}}</h5>
+                                                @if (!empty($data->tanggal_event))
+                                                <p class="event-text card-text"><span>{{date_format(new DateTime($data->tanggal_event),"d M Y")}} </span>| {{date_format(new DateTime($data->waktu),"H.i")}} WIB</p>
+                                                @endif
+                                                <a href="detail/{{$data->slug}}" class="button btn">Yuk Gabung!!!</a>
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- <div class="col-5">
-                                        <div class="card">
-                                            <img src="./images/logo.svg" class="card-img-top" alt="...">
-                                            <div class="card-body">
-                                                <h5 class="card-title">Card title</h5>
-                                                <p class="event-text card-text"><span>7 Maret 2021 </span>| 10.00 WIB</p>
-                                                <a href="#" class="button btn">Yuk Gabung!!!</a>
-                                            </div>
-                                        </div>
-                                    </div> -->
+                                    @endforeach
                                 </div>
                             </div>
-                            <!-- <div class="carousel-item">
-                                <div class="row justify-content-center">
-                                    <div class="col-5">
-                                        <div class="card">
-                                            <img src="./images/logo.svg" class="card-img-top" alt="...">
-                                            <div class="card-body">
-                                                <h5 class="card-title">Card title</h5>
-                                                <p class="event-text card-text"><span>7 Maret 2021 </span>| 10.00 WIB</p>
-                                                <a href="#" class="button btn">Yuk Gabung!!!</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-5">
-                                        <div class="card">
-                                            <img src="./images/logo.svg" class="card-img-top" alt="...">
-                                            <div class="card-body">
-                                                <h5 class="card-title">Card title</h5>
-                                                <p class="event-text card-text"><span>7 Maret 2021 </span>| 10.00 WIB</p>
-                                                <a href="#" class="button btn">Yuk Gabung!!!</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="carousel-item">
-                                <div class="row justify-content-center">
-                                    <div class="col-5">
-                                        <div class="card">
-                                            <img src="./images/logo.svg" class="card-img-top" alt="...">
-                                            <div class="card-body">
-                                                <h5 class="card-title">Card title</h5>
-                                                <p class="event-text card-text"><span>7 Maret 2021 </span>| 10.00 WIB</p>
-                                                <a href="#" class="button btn">Yuk Gabung!!!</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-5">
-                                        <div class="card">
-                                            <img src="./images/logo.svg" class="card-img-top" alt="...">
-                                            <div class="card-body">
-                                                <h5 class="card-title">Card title</h5>
-                                                <p class="event-text card-text"><span>7 Maret 2021 </span>| 10.00 WIB</p>
-                                                <a href="#" class="button btn">Yuk Gabung!!!</a>
-                                            </div>
-                                        </div>
-                                    </div> -->
                                 </div>
                             </div>
                         </div>
                         <a class="carousel-control-prev" href="#event-courosel" role="button" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span style="transform: scaleX(-1);" class="carousel-control-prev-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Previous</span>
                         </a>
                         <a class="carousel-control-next" href="#event-courosel" role="button" data-bs-slide="next">
@@ -160,99 +108,57 @@
                     </div>
                 </div>
             </div>
-            <a class="float-end lihat-semua" href="./event.html">Lihat Semua ⇨</a>
+            <a class="float-end lihat-semua" href="EventList">Lihat Semua ⇨</a>
         </div>
     </section>
 
     <h1 class="tagline text-center">#DareToBeOutstanding</h1>
-<!-- 
+
     <section class="artikel">
         <div class="container-fluid">
             <div class="row">
+                @foreach ($articles as $data)
                 <div class="col-lg-4">
                     <div class="card" data-aos="fade-up" data-aos-duration="2000">
-                        <img src="images/logo-panjang.svg" class="card-img-top" alt="...">
+                        <img src="{{ asset('storage/'.$data->foto_article) }}" class="card-img-top" alt="...">
                         <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="button btn">Read More</a>
+                            <h5 class="card-title">{{$data->judul_artikel}}</h5>
+                            <a href="artikel/{{$data->id}}" class="button btn">Baca Artikel</a>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4">
-                    <div class="card" data-aos="fade-up" data-aos-duration="2000">
-                        <img src="images/logo-panjang.svg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="button btn">Read More</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="card" data-aos="fade-up" data-aos-duration="2000">
-                        <img src="images/logo-panjang.svg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                          <h5 class="card-title">Card title</h5>
-                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                          <a href="#" class="button btn">Read more</a>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
-    </section> -->
+    </section>
     <section class="pendapat">
         <div class="container-fluid">
             <h1 class="text-center judul">Apa kata mereka tentang <span>OYI?</span></h1>
             <div id="carouselExampleControls" class="carousel carousel-dark slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
-                    <div class="carousel-item active">
+                    @foreach ($review as $index => $data)
+                    <div <?php if ($index==0) {echo 'class="carousel-item active"';} else {echo 'class="carousel-item"';}?> >
                         <div class="row justify-content-center">
                             <div class="col-lg-3 offset-lg-1">
-                                <img class="mx-auto d-block img-thumbnail rounded-circle " src="images/bigram.jpg" alt="foto-1">
+                                <img class="mx-auto d-block img-thumbnail rounded-circle " src="{{ asset('storage/'.$data->foto) }}" alt="foto-1">
                             </div>
                             <div class="col-lg-6 ">
                                 <div class="pendapat-text">
                                     <p class="text-justify">
-                                        "Menurut saya OYI layak untuk dikenal, mereka selektif dalam memilih pembicara. 
-                                        Mereka tau bagaimana kualitas pembicara yang inspiratif, suportif, sehingga 
-                                        saya rasa di OYI ini saya mendapatkan ilmu berbayar rasa restoran, harga kaki 
-                                        lima kualitas bintang lima. tidak akan ada event luar biasa tanpa org yang luar 
-                                        biasa didalamnya. Good job oyi you did your best"
+                                        {{strip_tags($data->kata)}}
                                     </p>
                                     <div class="name">
-                                        <h4>Bigram Refsilangi</h4>
-                                        <h5>Karyawan</h5>
+                                        <h4>{{$data->detail}}</h4>
+                                        <!-- <h5>Karyawan</h5> -->
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                  <div class="carousel-item">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-3 offset-lg-1">
-                                <img class="mx-auto d-block img-thumbnail rounded-circle " src="images/wayan.jpg" alt="foto-1">
-                            </div>
-                            <div class="pendapat-quote col-lg-6 ">
-                                <div class="pendapat-text">
-                                    <p class="text-justify">
-                                        "Outstanding Youth Indonesia telah membantu 
-                                        banyak pemuda Indonesia untuk terus berprestasi 
-                                        dan berkarya, Terima kasih telah mewadahi tim 
-                                        kami mendapatkan Special award Kiwie."
-                                    </p>
-                                    <div class="name">
-                                        <h4>I Wayan Wirayudha</h4>
-                                        <h5>Mahasiswa</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                  </div>
+                    @endforeach
                 </div>
                 <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="carousel-control-prev-icon" aria-hidden="true" style="transform: scaleX(-1);"></span>
                     <span class="visually-hidden">Previous</span>
                 </a>
                 <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-bs-slide="next">
@@ -270,15 +176,16 @@
                     <h1 class="contact-header">Kirim Pesan.</h1>
                 </div>
                 <div class="col-md">
-                    <form action="mailto:kritiksaran@oyi.or.id?subject=pesan" method=”POST” enctype=”text/plain” name=”EmailTestForm” class="row">
+                    <form action="Pesan" method="POST" enctype=”text/plain” name=”EmailTestForm” class="row">
+                    @csrf 
                         <div class="mb-4">
-                            <input type="text" class="input-control" name="name" id="name" placeholder="Nama anda" autocomplete="off">
+                            <input type="text" class="input-control" name="nama" id="name" placeholder="Nama anda" autocomplete="off" required>
                         </div>
                         <div class="mb-4">
-                            <input type="email" class="input-control" name="email" id="email" placeholder="Email anda" autocomplete="off">
+                            <input type="email" class="input-control" name="email" id="email" placeholder="Email anda" autocomplete="off" required>
                         </div>
                         <div class="mb-4">
-                            <input type="text" class="input-control" name="pesan" id="pesan" placeholder="Pesan anda" autocomplete="off">
+                            <input type="text" class="input-control" name="pesan" id="pesan" placeholder="Pesan anda" autocomplete="off" required>
                         </div>
                         <button type="submit" class="button btn">Kirim</button>
                     </form>

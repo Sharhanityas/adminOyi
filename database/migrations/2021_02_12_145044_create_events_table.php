@@ -21,6 +21,7 @@ class CreateEventsTable extends Migration
             $table->string('waktu');
             $table->string('tempat');
             $table->longText('deskripsi');
+            $table->string('link');
 
             $table->softDeletes();
             $table->timestamps();

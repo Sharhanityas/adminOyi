@@ -21,6 +21,7 @@
                                     <th>waktu</th>
                                     <th>tempat</th>
                                     <th>deskripsi</th>
+                                    <th>link</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -32,6 +33,7 @@
                                     <td>{{ $item->waktu }}</td>
                                     <td>{{ $item->tempat }}</td>
                                     <td>{!! $item->deskripsi !!}</td>
+                                    <td>{{ $item->link }}</td>
                                     <td>
                                         <a href="{{ route('event.gallery' , $item->id) }}" class = "btn btn-info btn-sm">
                                             {{-- <a href="#" class = "btn btn-info btn-sm"> --}}

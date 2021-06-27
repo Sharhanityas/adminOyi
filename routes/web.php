@@ -14,10 +14,11 @@
 use App\Http\Controllers\EventController;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/', 'ClientPagesController@home');
 
-Route::get('/', 'DashboardController@index')->name('dashboard');
+Route::get('/admin', 'DashboardController@index')->name('dashboard');
 
-Auth::routes(['register' => false]);
+Auth::routes(['register' => true]);
 
 Route::get('event/{id}/gallery', 'EventController@gallery')
     ->name('event.gallery');
@@ -45,3 +46,19 @@ Route::resource('review', 'ReviewController');
 Route::resource('review_galleries', 'ReviewGalleryController');
 
 Route::resource('message', 'MessageController');
+
+
+Route::get('detail/{slug}', 'ClientPagesController@detail');
+
+Route::get('EventList', 'ClientPagesController@eventGalleri');
+
+Route::get('artikel/{id}', 'ClientPagesController@artikel');
+
+Route::get('ArtikelList', 'ClientPagesController@artikelGalleri');
+
+Route::post('Pesan', 'ClientPagesController@pesan');
+
+Route::get('ckeditor', 'CkeditorController@index');
+
+Route::post('ckeditor/upload', 'CkeditorController@upload')->name('ckeditor.upload');
+

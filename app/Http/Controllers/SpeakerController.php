@@ -47,7 +47,7 @@ class SpeakerController extends Controller
     {
         $events = Event::all();
 
-        return view('pages.speakers.create')->with([
+        return view('pages.Speakers.create')->with([
             'events' => $events
         ]);
     }

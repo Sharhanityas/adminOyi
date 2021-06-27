@@ -27,7 +27,7 @@
                                     <td>{{ $item->id }}</td>
                                     <td>{{ $item->nama }}</td>
                                     <td>{{ $item->email }}</td>
-                                    <td>{!! $item->detail !!}</td>
+                                    <td>{!! $item->pesan !!}</td>
                                     <td>
                                               @csrf
                                             @method('delete')

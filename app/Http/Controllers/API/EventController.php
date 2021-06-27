@@ -18,6 +18,7 @@ class EventController extends Controller
         $waktu = $request->input('waktu');
         $tempat = $request->input('tempat');
         $deskripsi = $request->input('deskripsi');
+        $link = $request->input('link');
 
         if ($id) {
             $event = Event::with('galleries')->find($id);
@@ -56,6 +57,9 @@ class EventController extends Controller
 
         if ($deskripsi)
             $event->where('deskripsi', 'like', '%' . $deskripsi . '%');
+
+        if ($link)
+            $event->where('link', 'like', '%' . $link . '%');
 
         return ResponseFormatter::success(
             $event->paginate($limit),

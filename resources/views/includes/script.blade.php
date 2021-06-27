@@ -23,17 +23,14 @@
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.js"></script>
     <script src="{{ asset('assets/js/init/fullcalendar-init.js') }}"></script>
 
-    <script src="https://cdn.ckeditor.com/ckeditor5/25.0.0/classic/ckeditor.js"></script>
+    <script src="http://cdn.ckeditor.com/4.6.2/standard-all/ckeditor.js"></script>
     <script>
-                        ClassicEditor
-                                .create( document.querySelector( '.ckeditor' ) )
-                                .then( editor => {
-                                        console.log( editor );
-                                } )
-                                .catch( error => {
-                                        console.error( error );
-                                } );
-                </script>
+     CKEDITOR.replace('ckeditor', {
+        filebrowserUploadUrl: "{{route('ckeditor.upload', ['_token' => csrf_token() ])}}",
+        filebrowserUploadMethod: 'form'
+    });
+    </script>
+    
 
     <!--Local Stuff-->
     <script>
