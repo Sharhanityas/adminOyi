@@ -47,6 +47,8 @@ Route::resource('review_galleries', 'ReviewGalleryController');
 
 Route::resource('message', 'MessageController');
 
+Route::resource('registration', 'RegistrationController');
+
 
 Route::get('detail/{slug}', 'ClientPagesController@detail');
 
