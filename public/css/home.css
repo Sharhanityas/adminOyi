@@ -175,7 +175,7 @@ nav {
 	width: 80%;
 }
 
-.carousel-inner > .item {
+.carousel-inner>.item {
 	position: relative;
 	display: none;
 	transition: none;
@@ -319,6 +319,7 @@ input:focus {
 		margin: auto;
 		margin-bottom: 30px;
 	}
+
 	h1.tagline {
 		font-size: 3em;
 	}
@@ -388,9 +389,11 @@ input:focus {
 	.event img {
 		height: 80px;
 	}
+
 	.event .card {
 		width: 90%;
 	}
+
 	.event-text {
 		display: none;
 	}
@@ -414,6 +417,7 @@ input:focus {
 	.img-thumbnail {
 		width: 50%;
 	}
+
 	.pendapat p {
 		margin-top: 20px;
 	}

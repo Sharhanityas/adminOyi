@@ -64,3 +64,8 @@ Route::get('ckeditor', 'CkeditorController@index');
 
 Route::post('ckeditor/upload', 'CkeditorController@upload')->name('ckeditor.upload');
 
+Route::get('/form', function () {
+    return view('client.form');
+});
+
+Route::get('Registration', 'ClientPagesController@Registration');

@@ -9,6 +9,7 @@ use App\Models\Review;
 use App\Models\Speaker;
 use App\Models\Article;
 use App\Models\Message;
+use App\Models\Registration;
 
 class ClientPagesController extends Controller
 {
@@ -94,5 +95,11 @@ class ClientPagesController extends Controller
         return back();
     }
 
-
+    public function Registration()
+    {
+        $form = Registration::where('event_id','=',4)->get();
+        
+        return view('client.form',compact("form"));
+        
+    }
 }
