@@ -11,50 +11,27 @@
                         </h4>
                     </div>
                 </div class="card-body--">
-                <div class="table-stats order-table ov-h">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>event</th>
-                                <th>Atribut</th>
-                                <th>action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @forelse ($items as $item)
-                                <tr>
-                                    <td>{{ $item->id }}</td>
-                                    <td>{{ $item->event->judul_event }}</td>
-                                    <td>{{ $item->atribut }}</td>
-                                    <td>
-                                        <a href="{{ route('registration.edit', $item->id) }}"
-                                            class="btn btn-primary btn-sm">
-                                            <i class="fa fa-pencil">
-                                            </i>
-                                        </a>
-                                        <form action="{{ route('registration.destroy', $item->id) }}" method="post"
-                                            class="d-inline">
-                                            @csrf
-                                            @method('delete')
-                                            <button class="btn btn-danger btn-sm">
-                                                <i class="fa fa-trash">
+                <div class="row mt-5 mx-auto" style="margin-bottom: 100px;">
+                    
 
-                                                </i>
-                                            </button>
-                                        </form>
-                                    </td>
-                                </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="6" class="text-center p-5">
-                                        Data Tidak Tersedia
-                                    </td>
-                                </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
+                    <div class="row row-cols-1 row-cols-md-2 g-4">
+                        @foreach ($items as $item)
+                        <div class="col">
+                            <div class="card h-100" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title"><strong>{{$item->judul_event}}</strong></h5>
+                                <div class="d-grid gap-2 d-md-block">
+                                    <a class="btn btn-primary" href="{{ route('registration.edit', $item->event_id) }}" role="button">Edit</a>
+                                    <a class="btn btn-info" href="responses" role="button">Response</a>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
+                    
                 </div>
+                
             </div>
         </div>
     </div>

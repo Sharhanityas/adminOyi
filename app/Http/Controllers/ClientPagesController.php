@@ -10,6 +10,7 @@ use App\Models\Speaker;
 use App\Models\Article;
 use App\Models\Message;
 use App\Models\Registration;
+use App\Models\Response;
 
 class ClientPagesController extends Controller
 {
@@ -41,7 +42,7 @@ class ClientPagesController extends Controller
         $event = Event::join('event_galleries', 'events.id', '=', 'event_galleries.event_id')
                 ->where('events.slug', '=', $slug)
                 ->whereNull('event_galleries.deleted_at')
-                ->get(['events.*', 'event_galleries.*']);
+                ->get(['events.*', 'event_galleries.gambar_event']);
 
         foreach ($event as $get) {
             $Speaker = Speaker::where('event_id','=',$get->event_id)->get();
@@ -95,11 +96,35 @@ class ClientPagesController extends Controller
         return back();
     }
 
-    public function Registration()
+    public function RegistrationIndex($id)
     {
-        $form = Registration::where('event_id','=',4)->get();
+        $form = Registration::with('event')->where('event_id','=',$id)->get();
         
         return view('client.form',compact("form"));
+        
+    }
+
+    public function RegistrationCreate(Request $request,$id)
+    {
+        $atribut = Registration::with('event')->where('event_id','=',$id)->get();
+        
+        foreach ($atribut as $data) {
+            $name = $data['slug'];
+            if ($data->type == 'file') {
+                $array[$data->atribut] = $request->file($name)->store('assets/response', 'public');
+            }else {
+                $array[$data->atribut] = $request->$name;
+            }
+        }
+        // return response()->json( [$array] );
+        $json = json_encode($array);
+        Response::create([
+            'event_id' => $id,
+            'nama' => $request->nama,
+            'email' => $request->email,
+            'isi' => $json
+        ]);
+        return view('client.status_pendaftaran');
         
     }
 }

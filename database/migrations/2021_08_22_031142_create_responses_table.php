@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRegistrationsTable extends Migration
+class CreateResponsesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateRegistrationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('registrations', function (Blueprint $table) {
+        Schema::create('responses', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('event_id');
-            $table->string('atribut');
-            $table->string('slug');
-            $table->string('type');
+            $table->string('nama');
+            $table->string('email');
+            $table->string('isi');
 
             $table->softDeletes();
             $table->timestamps();
@@ -32,6 +32,6 @@ class CreateRegistrationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('registrations');
+        Schema::dropIfExists('responses');
     }
 }

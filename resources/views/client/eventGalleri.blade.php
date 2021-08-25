@@ -17,7 +17,7 @@
                         <div class="card-body">
                             <h5 class="card-title">{{$data->judul_event}}</h5>
                             @if (!empty($data->tanggal_event))
-                                <p class="event-text card-text"><span>{{date_format(new DateTime($data->tanggal_event),"d M Y")}} </span>| {{date_format(new DateTime($data->waktu),"H.i")}} WIB</p>
+                                <p class="event-text card-text"><span>{{$data->tanggal_event}} </span>| {{$data->waktu}} WIB</p>
                             @endif
                             <a href="detail/{{$data->slug}}" class="button btn">Yuk Gabung!!!</a>
                         </div>

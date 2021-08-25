@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RegistrationRequest extends FormRequest
+class ResponseRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,10 +25,9 @@ class RegistrationRequest extends FormRequest
     {
         return [
             'event_id' => 'required|integer|exists:events.id',
-            'event' => 'required|max:255|exists:events.id',
-            'atribut' => 'required|max:255',
-            'slug' => 'required|max:255',
-            'type' => 'required|max:255',
+            'nama' => 'required|max:255',
+            'email' => 'required|max:255',
+            'isi' => 'required|max:255',
         ];
     }
 }

@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Registration as IlluminateEvent;
 use Symfony\Component\EventDispatcher\Registration as SymfonyEvent;
 use App\Models\Event;
+use App\Models\Response;
 
 class RegistrationController extends Controller
 {
@@ -27,9 +28,8 @@ class RegistrationController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $items = Registration::with('event')->get();
-
+    {   
+        $items = Registration::join('events','registrations.event_id','=','events.id')->groupBy('registrations.event_id')->get(['registrations.*','events.judul_event']);
         return view('pages.Registrations.index')->with([
             'items' => $items
         ]);
@@ -37,7 +37,7 @@ class RegistrationController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     *
+     *->groupBy('event_id')
      * @return \Illuminate\Http\Response
      */
     public function create()
@@ -57,20 +57,21 @@ class RegistrationController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
-        Registration::create($data);
-        return redirect()->route('registration.index');
-    }
+        $atribut    = $request->atribut;
+        $type       = $request->type;
+        $total      = count($atribut);
+        // var_dump($atribut);
+        for($i=0; $i<$total; $i++){
+            
+            Registration::create([
+                'event_id'   => $request->event_id,
+                'atribut'    => $atribut[$i],
+                'slug'       => $slug = Str::slug($atribut[$i], '_'),
+                'type'       => $type[$i]
+            ]);
+        }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        return redirect()->route('registration.index');
     }
 
     /**
@@ -81,8 +82,9 @@ class RegistrationController extends Controller
      */
     public function edit($id)
     {
-        $item = Registration::findOrFail($id);
-
+        // $item = Registration::findOrFail($id);
+        $item = Registration::where('event_id',$id)->get();
+        // dd($item);
         return view('pages.Registrations.editor')->with([
 
             'item'  => $item
@@ -99,10 +101,10 @@ class RegistrationController extends Controller
     public function update(Request $request, $id)
     {
         $data = $request->all();
-        $item = Registration::findOrFail($id);
+        $item = Registration::find($id);
         $item->update($data);
 
-        return redirect()->route('registration.index');
+        return back();
     }
 
     /**
@@ -116,8 +118,14 @@ class RegistrationController extends Controller
         $item = Registration::findOrFail($id);
         $item->delete();
 
-        Registration::where('event_id', $id)->delete();
+        return back();
+    }
 
-        return redirect()->route('registration.index');
+    public function responses()
+    {
+        $items = Response::with('event')->where('event_id','=',4)->get();
+        // dd($items);
+
+        return view('pages.Registrations.response',compact('items'));
     }
 }

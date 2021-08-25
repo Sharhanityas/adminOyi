@@ -51,11 +51,11 @@
                     <div class="sticky-top" style="top: 6rem;">
                         @foreach ($event as $data)
                         <div class="mb-5 d-grid gap-2">
-                            <a class="btn rounded-pill text-white" href="http://{{$data->link}}" role="button" style="background-color: #FF4747;">Daftar Sekarang</a>
+                            <a class="btn rounded-pill text-white" href="/form/{{$data->id}}" role="button" style="background-color: #FF4747;">Daftar Sekarang</a>
                         </div>
                         <strong>Tanggal dan Waktu</strong>
                         @if (!empty($data->tanggal_event))
-                        <p>{{date_format(new DateTime($data->tanggal_event),"d M Y")}} {{$data->waktu}} WIB</p>
+                        <p>{{$data->tanggal_event}} {{$data->waktu}} WIB</p>
                         @else
                         <p>-</p>
                         @endif

@@ -30,7 +30,6 @@ Route::get('article/{id}/gallery', 'ArticleController@gallery')
 Route::get('review/{id}/gallery', 'ReviewController@gallery')
     ->name('review.gallery');
 
-
 Route::resource('event', 'EventController');
 
 Route::resource('event_galleries', 'EventGalleryController');
@@ -49,6 +48,9 @@ Route::resource('message', 'MessageController');
 
 Route::resource('registration', 'RegistrationController');
 
+Route::get('responses', 'RegistrationController@responses');
+
+Route::get('destroy/{id}', 'RegistrationController@destroy')->name('destroy');
 
 Route::get('detail/{slug}', 'ClientPagesController@detail');
 
@@ -64,8 +66,10 @@ Route::get('ckeditor', 'CkeditorController@index');
 
 Route::post('ckeditor/upload', 'CkeditorController@upload')->name('ckeditor.upload');
 
-Route::get('/form', function () {
-    return view('client.form');
+Route::get('/tes', function () {
+    return view('client.tes');
 });
 
-Route::get('Registration', 'ClientPagesController@Registration');
+Route::get('form/{id}', 'ClientPagesController@RegistrationIndex');
+
+Route::post('SubmitRegistration/{id}', 'ClientPagesController@RegistrationCreate');

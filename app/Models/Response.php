@@ -7,12 +7,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 
 
-class Registration extends Model
+class Response extends Model
 {
     use SoftDeletes;
 
     protected $fillable = [
-        'event_id', 'atribut','slug','type'
+        'event_id', 'nama','email','isi'
     ];
 
     protected $hidden = [];

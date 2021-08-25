@@ -79,18 +79,16 @@
                             <div class="carousel-item active">
                                 <div class="row justify-content-center">
                                     @foreach ($event as $data)
-                                    <div class="col-5">
-                                        <div class="card">
+                                        <div class="card mx-auto mb-5" style="width: 18rem;">
                                             <img src="{{ asset('storage/'.$data->gambar_event) }}" class="card-img-top h-100" alt="...">
                                             <div class="card-body">
                                                 <h5 class="card-title">{{$data->judul_event}}</h5>
                                                 @if (!empty($data->tanggal_event))
-                                                <p class="event-text card-text"><span>{{date_format(new DateTime($data->tanggal_event),"d M Y")}} </span>| {{date_format(new DateTime($data->waktu),"H.i")}} WIB</p>
+                                                <p class="event-text card-text"><span>{{$data->tanggal_event}} </span>| {{$data->waktu}} WIB</p>
                                                 @endif
                                                 <a href="detail/{{$data->slug}}" class="button btn">Yuk Gabung!!!</a>
                                             </div>
                                         </div>
-                                    </div>
                                     @endforeach
                                 </div>
                             </div>
@@ -165,7 +163,7 @@
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
                 </a>
-              </div>
+            </div>
         </div>
     </section>
 
