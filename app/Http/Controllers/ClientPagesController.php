@@ -108,10 +108,12 @@ class ClientPagesController extends Controller
     {
         $atribut = Registration::with('event')->where('event_id','=',$id)->get();
         
+        
         foreach ($atribut as $data) {
+            
             $name = $data['slug'];
             if ($data->type == 'file') {
-                $array[$data->atribut] = $request->file($name)->store('assets/response', 'public');
+                $array[$data->atribut] = $request->file($name)->store('assets/response/'.$data->event->slug, 'public');
             }else {
                 $array[$data->atribut] = $request->$name;
             }

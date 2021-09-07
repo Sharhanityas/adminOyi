@@ -48,13 +48,9 @@
                         @endif
                         <div class="mb-3">
                             <div class="form-check">
-                                <!-- <input class="form-check-input" type="checkbox" value="{{$data->atribut}}" name="{{$data->slug}}"/>
-                                <label class="form-check-label" for="flexCheckDefault">
-                                    {{$data->atribut}}
-                                </label> -->
                                 <label class="control control-checkbox">
                                     {{$data->atribut}}
-                                    <input type="checkbox" value="{{$data->atribut}}" name="{{$data->slug}}" required/>
+                                    <input type="checkbox" value="{{$data->atribut}}" name="{{$data->slug}}"/>
                                     <div class="control_indicator"></div>
                                 </label>
                             </div>

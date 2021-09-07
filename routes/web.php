@@ -48,7 +48,7 @@ Route::resource('message', 'MessageController');
 
 Route::resource('registration', 'RegistrationController');
 
-Route::get('responses', 'RegistrationController@responses');
+Route::get('responses/{id}', 'RegistrationController@responses');
 
 Route::get('destroy/{id}', 'RegistrationController@destroy')->name('destroy');
 
@@ -67,7 +67,7 @@ Route::get('ckeditor', 'CkeditorController@index');
 Route::post('ckeditor/upload', 'CkeditorController@upload')->name('ckeditor.upload');
 
 Route::get('/tes', function () {
-    return view('client.tes');
+    return view('client.export.response');
 });
 
 Route::get('form/{id}', 'ClientPagesController@RegistrationIndex');

@@ -22,7 +22,7 @@
                                 <h5 class="card-title"><strong>{{$item->judul_event}}</strong></h5>
                                 <div class="d-grid gap-2 d-md-block">
                                     <a class="btn btn-primary" href="{{ route('registration.edit', $item->event_id) }}" role="button">Edit</a>
-                                    <a class="btn btn-info" href="responses" role="button">Response</a>
+                                    <a class="btn btn-info" href="responses/{{$item->event_id}}" role="button">Response</a>
                                 </div>
                             </div>
                             </div>

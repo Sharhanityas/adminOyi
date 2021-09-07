@@ -121,9 +121,9 @@ class RegistrationController extends Controller
         return back();
     }
 
-    public function responses()
+    public function responses($id)
     {
-        $items = Response::with('event')->where('event_id','=',4)->get();
+        $items = Response::with('event')->where('event_id','=',$id)->get();
         // dd($items);
 
         return view('pages.Registrations.response',compact('items'));

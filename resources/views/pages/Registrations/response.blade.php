@@ -18,13 +18,12 @@
                     @endforeach
                 </div>
             </div class="card-body--">
-            <a href="#">
-                <button type="button" class="btn btn-success"><i class="menu-icon fa fa-download"></i> Export Excle</button>
-            </a>
+
+                <button onclick="ExportExcel('xlsx')" type="button" class="btn btn-success"><i class="menu-icon fa fa-download"></i> Export Excle</button>
             <div class="row mt-5 mx-auto" style="margin-bottom: 100px;">
             
                 <div class="table-stats order-table ov-h">
-                    <table class="table">
+                    <table class="table" id="exportable_table">
                         <thead>
                             <tr>
                                 <?php 
@@ -52,9 +51,9 @@
                                         echo "<td>".$value->email."</td>";
                                         foreach ($json as  $jawaban) {
                                             if (strpos($jawaban, 'assets') === false) {
-                                                echo "<td>" .$jawaban."<td>";
+                                                echo "<td>".$jawaban."<td>";
                                             }else {
-                                                echo "<td><img src='".asset('storage/'.$jawaban)."'/><td>";
+                                                echo "<td>".url('storage/'.$jawaban)."><td>";
                                             }
                                             
                                         }
@@ -68,4 +67,31 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
+<script type="text/javascript">
+    function ExportExcel(type, fn, dl) {
+    var elt = document.getElementById('exportable_table');
+    var wb = XLSX.utils.table_to_book(elt, {sheet:"Sheet JS"});
+    return dl ?
+        XLSX.write(wb, {bookType:type, bookSST:true, type: 'base64'}) :
+        XLSX.writeFile(wb, fn || (
+            
+            <?php
+                $index = 0; 
+                foreach ($items as $judul) {
+                    $index++;
+                    if ($index == 1) {
+                        $export = $judul->event['judul_event'];
+                        echo "'$export.'";
+                    }
+                } 
+            ?>
+            
+            // 'Export.'
+            
+            + (type || 'xlsx')));
+    }
+
+</script>
 @endsection
