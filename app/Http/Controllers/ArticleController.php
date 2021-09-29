@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ArticleRequest;
-use App\Models\ArticleGallery;
-use Illuminate\Support\Str;
 use App\Models\Article;
+use App\Models\ArticleGallery;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class ArticleController extends Controller
 {
@@ -27,9 +29,10 @@ class ArticleController extends Controller
     public function index()
     {
         $items = Article::all();
-
+        $truncated = Str::limit($items, 20);
+        $items = DB::table('articles')->paginate(5);
         return view('pages.Articles.index')->with([
-            'items' => $items
+            'items' => $items,
         ]);
     }
 
@@ -52,6 +55,15 @@ class ArticleController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
+        $data['slug'] = Str::slug($request->judul_artikel);
+        $body = [
+            "long_url" => url('artikel/' . $data['slug']),
+            "domain" => "bit.ly",
+            "group_guid" => "",
+        ];
+        $shorten = $this->rest('POST', 'shorten', $body);
+        $data['shorten_id'] = $shorten['id'];
+        $data['shorten_custom'] = 'bit.ly/';
         Article::create($data);
         return redirect()->route('article.index');
     }
@@ -79,7 +91,7 @@ class ArticleController extends Controller
 
         return view('pages.Articles.editor')->with([
 
-            'item'  => $item
+            'item' => $item,
         ]);
     }
 
@@ -92,11 +104,16 @@ class ArticleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = $request->all();
-
         $item = Article::findOrFail($id);
+        $data = $request->all();
+        $data['slug'] = Str::slug($request->judul_artikel);
+        $body = [
+            "id" => $item->shorten_id,
+            "long_url" => url('artikel/' . Str::slug($request->judul_artikel)),
+        ];
+        $url = 'bitlinks/' . $item->shorten_id;
+        $this->rest('PATCH', $url, $body);
         $item->update($data);
-
 
         return redirect()->route('article.index');
     }
@@ -125,7 +142,22 @@ class ArticleController extends Controller
 
         return view('pages.Articles.gallery')->with([
             'article' => $article,
-            'items' => $items
+            'items' => $items,
         ]);
+    }
+
+    public function rest($method, $url, $body)
+    {
+        $headers = [
+            'Authorization' => 'Bearer ' . getenv('BITLY_API'),
+            'Accept' => 'application/json',
+        ];
+        $params = [
+            'headers' => $headers,
+            'body' => json_encode($body),
+        ];
+        $client = new Client(['base_uri' => 'https://api-ssl.bitly.com/v4/']);
+        $result = $client->request($method, $url, $params);
+        return json_decode($result->getBody()->getContents(), true);
     }
 }

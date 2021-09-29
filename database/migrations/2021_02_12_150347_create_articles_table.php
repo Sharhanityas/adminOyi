@@ -17,6 +17,9 @@ class CreateArticlesTable extends Migration
             $table->bigIncrements('id');
             $table->string('judul_artikel');
             $table->longText('isi');
+            $table->string('slug');
+            $table->string('shorten_id');
+            $table->string('shorten_custom');
 
             $table->softDeletes();
             $table->timestamps();

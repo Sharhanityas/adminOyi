@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -11,7 +10,7 @@ class Event extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'slug', 'judul_event', 'tanggal_event', 'waktu', 'tempat', 'deskripsi','link'
+        'slug', 'judul_event', 'tanggal_event', 'waktu', 'tempat', 'deskripsi', 'link', 'shorten_id', 'shorten_custom',
     ];
 
     protected $hidden = [];

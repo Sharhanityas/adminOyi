@@ -5,27 +5,27 @@
 @endsection
 @section('content')
 
-        <div class="container" style="margin-top: 100px;">
-            <div class="text-center">
-                <h1 class="quote-blue"><strong>OYI</strong> Artikel</h1>
-            </div>
-            <div class="row mt-5 mx-auto" style="margin-bottom: 100px;">
-                @foreach ($artikel as $data)
-                <div class="col-lg-4 col-md-4 col-sm-4 col-4">
-                    <div class="card" style="width: 18rem;">
-                        <img src="{{ asset('storage/'.$data->foto_article) }}" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">{{$data->judul_artikel}}</h5>
-                            <a href="artikel/{{$data->id}}" class="button btn">Baca Artikel</a>
-                        </div>
-                    </div>
-                </div>
-                @endforeach
-            </div>
+    <div class="container" style="margin-top: 100px;">
+        <div class="text-center">
+            <h1 class="quote-blue"><strong>OYI</strong> Artikel</h1>
         </div>
+        <div class="row mt-5 mx-auto" style="margin-bottom: 100px;">
+            @foreach ($artikel as $data)
+                <div class="card mx-auto mb-5" style="width: 18rem;">
+                    <!--<div class="card" style="width: 18rem;">-->
+                    <img src="{{ asset('storage/' . $data->foto_article) }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ $data->judul_artikel }}</h5>
+                        <a href="artikel/{{ $data->slug ? $data->slug : $data->articles_id }}" class="button btn">Baca Artikel</a>
+                    </div>
+                    <!--</div>-->
+                </div>
+            @endforeach
+        </div>
+    </div>
 
 
-        <section class="footer fixed-bottom">
+    <section class="footer fixed-bottom">
         <div class="container-fluid">
             <div class="row">
                 <div class=" col-md-4">

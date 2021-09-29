@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Requests\EventRequest;
 use App\Models\Event;
 use App\Models\EventGallery;
-use Illuminate\Support\Str;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Event as IlluminateEvent;
+use Illuminate\Support\Str;
 use Symfony\Component\EventDispatcher\Event as SymfonyEvent;
 
 class EventController extends Controller
@@ -29,9 +31,10 @@ class EventController extends Controller
     public function index()
     {
         $items = Event::all();
+        $items = DB::table('events')->paginate(5);
 
         return view('pages.Events.index')->with([
-            'items' => $items
+            'items' => $items,
         ]);
     }
 
@@ -55,7 +58,14 @@ class EventController extends Controller
     {
         $data = $request->all();
         $data['slug'] = Str::slug($request->judul_event);
-        // dd($data);
+        $body = [
+            "long_url" => url('detail/' . $data['slug']),
+            "domain" => "bit.ly",
+            "group_guid" => "",
+        ];
+        $shorten = $this->rest('POST', 'shorten', $body);
+        $data['shorten_id'] = $shorten['id'];
+        $data['shorten_custom'] = 'bit.ly/';
         Event::create($data);
         return redirect()->route('event.index');
     }
@@ -83,7 +93,7 @@ class EventController extends Controller
 
         return view('pages.Events.editor')->with([
 
-            'item'  => $item
+            'item' => $item,
         ]);
     }
 
@@ -96,12 +106,16 @@ class EventController extends Controller
      */
     public function update(EventRequest $request, $id)
     {
+        $item = Event::findOrFail($id);
         $data = $request->all();
         $data['slug'] = Str::slug($request->judul_event);
-        // dd($data);
-        $item = Event::findOrFail($id);
+        $body = [
+            "id" => $item->shorten_id,
+            "long_url" => url('detail/' . Str::slug($request->judul_artikel)),
+        ];
+        $url = 'bitlinks/' . $item->shorten_id;
+        $this->rest('PATCH', $url, $body);
         $item->update($data);
-
 
         return redirect()->route('event.index');
     }
@@ -131,7 +145,22 @@ class EventController extends Controller
 
         return view('pages.Events.gallery')->with([
             'event' => $event,
-            'items' => $items
+            'items' => $items,
         ]);
+    }
+
+    public function rest($method, $url, $body)
+    {
+        $headers = [
+            'Authorization' => 'Bearer ' . getenv('BITLY_API'),
+            'Accept' => 'application/json',
+        ];
+        $params = [
+            'headers' => $headers,
+            'body' => json_encode($body),
+        ];
+        $client = new Client(['base_uri' => 'https://api-ssl.bitly.com/v4/']);
+        $result = $client->request($method, $url, $params);
+        return json_decode($result->getBody()->getContents(), true);
     }
 }

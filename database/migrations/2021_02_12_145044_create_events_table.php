@@ -22,6 +22,8 @@ class CreateEventsTable extends Migration
             $table->string('tempat');
             $table->longText('deskripsi');
             $table->string('link');
+            $table->string('shorten_id');
+            $table->string('shorten_custom');
 
             $table->softDeletes();
             $table->timestamps();
