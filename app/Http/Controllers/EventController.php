@@ -108,13 +108,15 @@ class EventController extends Controller
     {
         $item = Event::findOrFail($id);
         $data = $request->all();
-        $data['slug'] = Str::slug($request->judul_event);
-        $body = [
-            "id" => $item->shorten_id,
-            "long_url" => url('detail/' . Str::slug($request->judul_artikel)),
-        ];
-        $url = 'bitlinks/' . $item->shorten_id;
-        $this->rest('PATCH', $url, $body);
+        if (!empty($item->shorten_id)) {
+            $data['slug'] = Str::slug($request->judul_event);
+            $body = [
+                "id" => $item->shorten_id,
+                "long_url" => url('detail/' . Str::slug($request->judul_artikel)),
+            ];
+            $url = 'bitlinks/' . $item->shorten_id;
+            $this->rest('PATCH', $url, $body);
+        }
         $item->update($data);
 
         return redirect()->route('event.index');

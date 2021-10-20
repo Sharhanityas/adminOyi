@@ -106,13 +106,15 @@ class ArticleController extends Controller
     {
         $item = Article::findOrFail($id);
         $data = $request->all();
-        $data['slug'] = Str::slug($request->judul_artikel);
-        $body = [
-            "id" => $item->shorten_id,
-            "long_url" => url('artikel/' . Str::slug($request->judul_artikel)),
-        ];
-        $url = 'bitlinks/' . $item->shorten_id;
-        $this->rest('PATCH', $url, $body);
+        if (!empty($item->shorten_id)) {
+            $data['slug'] = Str::slug($request->judul_artikel);
+            $body = [
+                "id" => $item->shorten_id,
+                "long_url" => url('artikel/' . Str::slug($request->judul_artikel)),
+            ];
+            $url = 'bitlinks/' . $item->shorten_id;
+            $this->rest('PATCH', $url, $body);
+        }
         $item->update($data);
 
         return redirect()->route('article.index');
