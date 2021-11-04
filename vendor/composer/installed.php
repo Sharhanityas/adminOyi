@@ -6,11 +6,20 @@
     'aliases' => 
     array (
     ),
-    'reference' => '0aa5ff9a0c253cec938c475b6e07941e41abb178',
+    'reference' => 'b8cea3f5c04b618ff42201d78d3cd09a317df78b',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
   array (
+    'almasaeed2010/adminlte' => 
+    array (
+      'pretty_version' => 'v3.1.0',
+      'version' => '3.1.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'c641d7f5716ed47e76f70ab16e05ae41420120b8',
+    ),
     'cordoval/hamcrest-php' => 
     array (
       'replaced' => 
@@ -375,7 +384,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => '0aa5ff9a0c253cec938c475b6e07941e41abb178',
+      'reference' => 'b8cea3f5c04b618ff42201d78d3cd09a317df78b',
     ),
     'laravel/tinker' => 
     array (
@@ -662,8 +671,8 @@
     array (
       'provided' => 
       array (
-        0 => '1.0',
-        1 => '1.0.0',
+        0 => '1.0.0',
+        1 => '1.0',
       ),
     ),
     'psr/simple-cache' => 

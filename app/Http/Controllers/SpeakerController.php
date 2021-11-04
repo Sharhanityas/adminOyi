@@ -10,8 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Speaker as IlluminateEvent;
 use Symfony\Component\EventDispatcher\Speaker as SymfonyEvent;
 use App\Models\Event;
-
-
+use Illuminate\Support\Facades\Storage;
 
 class SpeakerController extends Controller
 {
@@ -60,9 +59,24 @@ class SpeakerController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
-        $data['foto'] = $request->file('foto')->store('assets/speaker', 'public');
-        Speaker::create($data);
+        $nama           = $request->nama;
+        $email          = $request->email;
+        $telepon        = $request->telepon;
+        $deskripsi      = $request->deskripsi;
+        $foto           = $request->file('foto');
+        
+        for($i=0; $i<count($nama); $i++){
+            
+            Speaker::create([
+                'event_id'      => $request->event_id,
+                'nama'          => $nama[$i],
+                'email'         => $email[$i],
+                'telepon'       => $telepon[$i],
+                'foto'          => $foto[$i]->store('assets/speaker', 'public'),
+                'deskripsi'     => $deskripsi[$i],
+            ]);
+        }
+        
         return redirect()->route('speaker.index');
     }
 

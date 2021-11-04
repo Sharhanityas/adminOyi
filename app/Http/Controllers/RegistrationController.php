@@ -60,9 +60,10 @@ class RegistrationController extends Controller
         $atribut    = $request->atribut;
         $type       = $request->type;
         $total      = count($atribut);
-        // var_dump($atribut);
-        for($i=0; $i<$total; $i++){
-            
+
+
+        // dd($total);
+        for($i=0; $i<$total; $i++){    
             Registration::create([
                 'event_id'   => $request->event_id,
                 'atribut'    => $atribut[$i],
@@ -70,6 +71,8 @@ class RegistrationController extends Controller
                 'type'       => $type[$i]
             ]);
         }
+
+        // dd($type);
 
         return redirect()->route('registration.index');
     }

@@ -1,6 +1,52 @@
 {
     "packages": [
         {
+            "name": "almasaeed2010/adminlte",
+            "version": "v3.1.0",
+            "version_normalized": "3.1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ColorlibHQ/AdminLTE.git",
+                "reference": "c641d7f5716ed47e76f70ab16e05ae41420120b8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ColorlibHQ/AdminLTE/zipball/c641d7f5716ed47e76f70ab16e05ae41420120b8",
+                "reference": "c641d7f5716ed47e76f70ab16e05ae41420120b8",
+                "shasum": ""
+            },
+            "time": "2021-03-22T07:30:50+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Colorlib"
+                }
+            ],
+            "description": "AdminLTE - admin control panel and dashboard that's based on Bootstrap 4",
+            "homepage": "https://adminlte.io/",
+            "keywords": [
+                "JS",
+                "admin",
+                "back-end",
+                "css",
+                "less",
+                "responsive",
+                "template",
+                "theme",
+                "web"
+            ],
+            "support": {
+                "issues": "https://github.com/ColorlibHQ/AdminLTE/issues",
+                "source": "https://github.com/ColorlibHQ/AdminLTE/tree/v3.1.0"
+            },
+            "install-path": "../almasaeed2010/adminlte"
+        },
+        {
             "name": "dnoegel/php-xdg-base-dir",
             "version": "v0.1.1",
             "version_normalized": "0.1.1.0",
@@ -6934,51 +6980,5 @@
             "install-path": "../webmozart/assert"
         }
     ],
-    "dev": true,
-    "dev-package-names": [
-        "doctrine/instantiator",
-        "facade/flare-client-php",
-        "facade/ignition",
-        "facade/ignition-contracts",
-        "fakerphp/faker",
-        "filp/whoops",
-        "hamcrest/hamcrest-php",
-        "laravel/ui",
-        "mockery/mockery",
-        "myclabs/deep-copy",
-        "nunomaduro/collision",
-        "phar-io/manifest",
-        "phar-io/version",
-        "php-parallel-lint/php-console-color",
-        "php-parallel-lint/php-console-highlighter",
-        "phpdocumentor/reflection-common",
-        "phpdocumentor/reflection-docblock",
-        "phpdocumentor/type-resolver",
-        "phpspec/prophecy",
-        "phpunit/php-code-coverage",
-        "phpunit/php-file-iterator",
-        "phpunit/php-invoker",
-        "phpunit/php-text-template",
-        "phpunit/php-timer",
-        "phpunit/phpunit",
-        "scrivo/highlight.php",
-        "sebastian/cli-parser",
-        "sebastian/code-unit",
-        "sebastian/code-unit-reverse-lookup",
-        "sebastian/comparator",
-        "sebastian/complexity",
-        "sebastian/diff",
-        "sebastian/environment",
-        "sebastian/exporter",
-        "sebastian/global-state",
-        "sebastian/lines-of-code",
-        "sebastian/object-enumerator",
-        "sebastian/object-reflector",
-        "sebastian/recursion-context",
-        "sebastian/resource-operations",
-        "sebastian/type",
-        "sebastian/version",
-        "theseer/tokenizer",
-        "webmozart/assert"
-    ]
+    "dev": true
 }

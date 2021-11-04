@@ -54,6 +54,7 @@ return array(
     'App\\Models\\EventGallery' => $baseDir . '/app/Models/EventGallery.php',
     'App\\Models\\Message' => $baseDir . '/app/Models/Message.php',
     'App\\Models\\Registration' => $baseDir . '/app/Models/Registration.php',
+    'App\\Models\\Response' => $baseDir . '/app/Models/Response.php',
     'App\\Models\\Review' => $baseDir . '/app/Models/Review.php',
     'App\\Models\\ReviewGallery' => $baseDir . '/app/Models/ReviewGallery.php',
     'App\\Models\\Speaker' => $baseDir . '/app/Models/Speaker.php',

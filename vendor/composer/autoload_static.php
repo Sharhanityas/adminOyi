@@ -487,6 +487,7 @@ class ComposerStaticInit5bacd3056f9185ab670444ca96f94b27
         'App\\Models\\EventGallery' => __DIR__ . '/../..' . '/app/Models/EventGallery.php',
         'App\\Models\\Message' => __DIR__ . '/../..' . '/app/Models/Message.php',
         'App\\Models\\Registration' => __DIR__ . '/../..' . '/app/Models/Registration.php',
+        'App\\Models\\Response' => __DIR__ . '/../..' . '/app/Models/Response.php',
         'App\\Models\\Review' => __DIR__ . '/../..' . '/app/Models/Review.php',
         'App\\Models\\ReviewGallery' => __DIR__ . '/../..' . '/app/Models/ReviewGallery.php',
         'App\\Models\\Speaker' => __DIR__ . '/../..' . '/app/Models/Speaker.php',
