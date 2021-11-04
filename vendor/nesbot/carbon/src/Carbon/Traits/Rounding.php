@@ -56,6 +56,7 @@ trait Rounding
             'microsecond' => [0, 999999],
         ]);
         $factor = 1;
+        $initialMonth = $this->month;
 
         if ($normalizedUnit === 'week') {
             $normalizedUnit = 'day';
@@ -115,7 +116,7 @@ trait Rounding
             $result = $result->$unit($value);
         }
 
-        return $normalizedUnit === 'month'
+        return $normalizedUnit === 'month' && $precision <= 1 && abs($result->month - $initialMonth) === 2
             // Re-run the change in case an overflow occurred
             ? $result->$normalizedUnit($normalizedValue)
             : $result;
@@ -193,7 +194,10 @@ trait Rounding
      */
     public function roundWeek($weekStartsAt = null)
     {
-        return $this->closest($this->copy()->floorWeek($weekStartsAt), $this->copy()->ceilWeek($weekStartsAt));
+        return $this->closest(
+            $this->avoidMutation()->floorWeek($weekStartsAt),
+            $this->avoidMutation()->ceilWeek($weekStartsAt)
+        );
     }
 
     /**
@@ -218,7 +222,7 @@ trait Rounding
     public function ceilWeek($weekStartsAt = null)
     {
         if ($this->isMutable()) {
-            $startOfWeek = $this->copy()->startOfWeek($weekStartsAt);
+            $startOfWeek = $this->avoidMutation()->startOfWeek($weekStartsAt);
 
             return $startOfWeek != $this ?
                 $this->startOfWeek($weekStartsAt)->addWeek() :
@@ -229,6 +233,6 @@ trait Rounding
 
         return $startOfWeek != $this ?
             $startOfWeek->addWeek() :
-            $this->copy();
+            $this->avoidMutation();
     }
 }

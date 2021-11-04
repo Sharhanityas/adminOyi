@@ -6,9 +6,12 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="box-tittle text-center text-uppercase">
-                            Daftar Events
-                        </h4>
+                        <<<<<<< HEAD <h4 class="box-tittle text-center text-uppercase">
+                            =======
+                            <h4 class="box-tittle">
+                                >>>>>>> 827494a1de68adc33ae0d01c5808ace51fa70913
+                                Daftar Events
+                            </h4>
                     </div>
                 </div class="card-body--">
                 <table id="myTable" class="display">

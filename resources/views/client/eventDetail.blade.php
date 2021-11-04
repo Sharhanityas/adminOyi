@@ -4,96 +4,104 @@
     <link rel="stylesheet" type="text/css" href="{{ url('/css/home.css') }}" />
 @endsection
 @section('content')
-@foreach ($event as $data)
+    @foreach ($event as $data)
         <div class="container text-center" style="margin-top: 70px;">
-            <img src="{{ asset('storage/'.$data->gambar_event) }}" class="card-img-top" alt="..." style="height: 50%; width: 50%;">
+            <img src="{{ asset('storage/' . $data->gambar_event) }}" class="card-img-top" alt="..." style="height: 50%; width: 50%;">
         </div>
         <hr style="height:3px; background-color: #FF4747;">
         <div class="container mt-5">
             <div class="row">
                 <div class="col-8">
                     <div class="mb-5">
-                        <a style="color: #FF4747; font-size: 30px;" href="#" >
+                        <a style="color: #FF4747; font-size: 30px;" href="#">
                             <i class="fas fa-share-alt"></i>
                         </a>
                     </div>
                     <div>
-                        <h1 class="quote-blue"><strong>{{$data->judul_event}}</strong></h1>
+                        <h1 class="quote-blue"><strong>{{ $data->judul_event }}</strong></h1>
                         <strong>Deskripsi</strong>
                         <p style="text-align: justify;">
-                            {!!$data->deskripsi !!}
+                            {!! $data->deskripsi !!}
                         </p>
                     </div>
-@endforeach
-                    <div class="mt-5">
-                        @if (is_array($SpeakerCheck) || is_object($SpeakerCheck))
-                            @foreach ($SpeakerCheck as $data)
-                                @if(empty($data))
-                                    <strong>Pembicara</strong>
-                                @endif
-                            @endforeach
-                        @endif
-                        <div class="row mt-3 text-center">
-                            @foreach ($Speaker as $data)
-                            <div class="col-4 mt-3 fluid">
-                                <img src="{{ asset($data->foto) }}" class="rounded-circle" alt="img" width="100" height="100">
-                                <p>
-                                    <strong>{{$data->nama}}</strong><br>
-                                    
-                                </p>
-                            </div>
-                            @endforeach
-                        </div>
-                        
-                    </div>
+    @endforeach
+    <div class="mt-5">
+        @if (is_array($SpeakerCheck) || is_object($SpeakerCheck))
+            @foreach ($SpeakerCheck as $data)
+                @if (empty($data))
+                    <strong>Pembicara</strong>
+                @endif
+            @endforeach
+        @endif
+        <div class="row mt-3 text-center">
+            @foreach ($Speaker as $data)
+                <div class="col-4 mt-3 fluid">
+                    <img src="{{ asset($data->foto) }}" class="rounded-circle" alt="img" width="100" height="100">
+                    <p>
+                        <strong>{{ $data->nama }}</strong><br>
+
+                    </p>
                 </div>
-                <div class="col-4">
-                    <div class="sticky-top" style="top: 6rem;">
-                        @foreach ($event as $data)
-                        <div class="mb-5 d-grid gap-2">
-                            <a class="btn rounded-pill text-white" href="/form/{{$data->id}}" role="button" style="background-color: #FF4747;">Daftar Sekarang</a>
-                        </div>
-                        <strong>Tanggal dan Waktu</strong>
-                        @if (!empty($data->tanggal_event))
-                        <p>{{$data->tanggal_event}} {{$data->waktu}} WIB</p>
-                        @else
-                        <p>-</p>
-                        @endif
-                        <strong>Lokasi</strong>
-                        <p>{{$data->tempat}}</p>
-                        @endforeach
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
 
+    </div>
+    </div>
+    <div class="col-4">
+        <div class="sticky-top" style="top: 6rem;">
+            @foreach ($event as $data)
+                <div class="mb-5 d-grid gap-2">
+                    @if (!empty($data->link))
+                        <a class="btn rounded-pill text-white" href="http://{{ $data->link }}" role="button" style="background-color: #FF4747;">Daftar Sekarang</a>
+                    @else
+                        <a class="btn rounded-pill text-white" href="/form/{{ $data->id }}" role="button" style="background-color: #FF4747;">Daftar Sekarang</a>
+                    @endif
+                </div>
+                <strong>Tanggal dan Waktu</strong>
+                @if (!empty($data->tanggal_event))
+                    <p>{{ $data->tanggal_event }} {{ $data->waktu }} WIB</p>
+                @else
+                    <p>-</p>
+                @endif
+                <strong>Lokasi</strong>
+                <p>{{ $data->tempat }}</p>
+            @endforeach
+        </div>
+    </div>
+    </div>
+    </div>
 
 
 
-        <section class="pendapat">
+
+    <section class="pendapat">
         <div class="container-fluid">
             <h1 class="text-center judul">Apa kata mereka tentang <span>OYI?</span></h1>
             <div id="carouselExampleControls" class="carousel carousel-dark slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     @foreach ($review as $index => $data)
-                    <div <?php if ($index==0) {echo 'class="carousel-item active"';} else {echo 'class="carousel-item"';}?> >
-                        <div class="row justify-content-center">
-                            <div class="col-lg-3 offset-lg-1">
-                                <img class="mx-auto d-block img-thumbnail rounded-circle " src="{{ asset('storage/'.$data->foto) }}" alt="foto-1">
-                            </div>
-                            <div class="col-lg-6 ">
-                                <div class="pendapat-text">
-                                    <p class="text-justify">
-                                        {{strip_tags($data->kata)}}
-                                    </p>
-                                    <div class="name">
-                                        <h4>{!!$data->detail!!}</h4>
-                                        <!-- <h5>Karyawan</h5> -->
+                        <div <?php if ($index == 0) {
+    echo 'class="carousel-item active"';
+} else {
+    echo 'class="carousel-item"';
+} ?>>
+                            <div class="row justify-content-center">
+                                <div class="col-lg-3 offset-lg-1">
+                                    <img class="mx-auto d-block img-thumbnail rounded-circle " src="{{ asset('storage/' . $data->foto) }}" alt="foto-1">
+                                </div>
+                                <div class="col-lg-6 ">
+                                    <div class="pendapat-text">
+                                        <p class="text-justify">
+                                            {{ strip_tags($data->kata) }}
+                                        </p>
+                                        <div class="name">
+                                            <h4>{!! $data->detail !!}</h4>
+                                            <!-- <h5>Karyawan</h5> -->
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
                     @endforeach
                 </div>
                 <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-bs-slide="prev">
@@ -116,7 +124,7 @@
                 </div>
                 <div class="col-md">
                     <form action="Pesan" method="POST" enctype=”text/plain” name=”EmailTestForm” class="row">
-                    @csrf 
+                        @csrf
                         <div class="mb-4">
                             <input type="text" class="input-control" name="nama" id="name" placeholder="Nama anda" autocomplete="off" required>
                         </div>
@@ -133,7 +141,7 @@
         </div>
     </section>
 
-        <section class="footer">
+    <section class="footer">
         <div class="container-fluid">
             <div class="row">
                 <div class=" col-md-4">

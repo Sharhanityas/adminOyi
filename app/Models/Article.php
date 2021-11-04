@@ -10,7 +10,7 @@ class Article extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'judul_artikel', 'isi'
+        'judul_artikel', 'isi', 'slug', 'shorten_id', 'shorten_custom',
     ];
 
     protected $hidden = [];
